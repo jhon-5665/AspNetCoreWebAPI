@@ -17,6 +17,6 @@ namespace SmartSchool.WebAPI.Data
          // Teacher
          Teacher[] GetAllTeachers(bool includeStudents = false);
          Teacher[] GetAllTeacherByDisciplineId(int disciplineId, bool includeStudents = false);
-         Teacher GetTeacherById(int teacherId, bool includeTeacher = false);       
+         Teacher GetTeacherById(int teacherId, bool includeTeacher = false);          
     }
 }

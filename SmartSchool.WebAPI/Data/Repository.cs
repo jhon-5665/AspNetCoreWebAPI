@@ -117,5 +117,6 @@ namespace SmartSchool.WebAPI.Data
 
             return query.FirstOrDefault();
         }
+        
     }
 }

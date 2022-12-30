@@ -1,12 +1,12 @@
 namespace SmartSchool.WebAPI.Models
 {
-    public class StudentDiscipline
+    public class StudentCourse
     {
-        public StudentDiscipline() { }
-        public StudentDiscipline(int studentId, int disciplineId)
+        public StudentCourse() { }
+        public StudentCourse(int studentId, int courseId)
         {
             this.StudentId = studentId;            
-            this.DisciplineId = disciplineId;          
+            this.CourseId = courseId;          
         }
 
         public DateTime StartDate { get; set; } = DateTime.Now;
@@ -14,7 +14,7 @@ namespace SmartSchool.WebAPI.Models
         public int? Note { get; set; } = null;
         public int StudentId { get; set; }
         public Student? Student { get; set; }
-        public int DisciplineId { get; set; }
-        public Discipline? Discipline { get; set; }
+        public int CourseId { get; set; }
+        public Course? Course { get; set; }
     }
 }
