@@ -9,90 +9,94 @@ namespace SmartSchool.WebAPI.Controllers
     [Route("api/[controller]")]
     public class TeacherController : ControllerBase
     {
-        private readonly SmartContext _context;
+        private readonly IRepository _repo;
 
-        public TeacherController(SmartContext context)
+        public TeacherController(IRepository repo)
         {
-            _context = context;
+            _repo = repo;            
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Teachers);
+            var result = _repo.GetAllTeachers(true);
+            return Ok(result);
         }
 
-        // api/teachers/byId
-        [HttpGet("ById/{id}")]
+        // api/teachers
+        [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {                       
-            var teacher = _context.Teachers.FirstOrDefault(t => t.Id == id);                       
+            var teacher = _repo.GetTeacherById(id, false);                       
             if (teacher == null)
             {
                 return BadRequest("The teacher was not found.");
             }
             return Ok(teacher);
         }
-
-        // api/teacher/name
-        [HttpGet("ByName")]
-        public IActionResult GetByName(string name)
-        {
-            var teacher = _context.Teachers.FirstOrDefault(t => t.Name.Contains(name));
-            if (teacher == null)
-            {
-                return BadRequest("The teacher was not found.");
-            }
-            return Ok(teacher);
-        }
-
+       
         // api/teacher/
         [HttpPost]
         public IActionResult Post(Teacher teacher)
         {
-            _context.Add(teacher);
-            _context.SaveChanges();
-            return Ok(teacher);
+            _repo.Add(teacher);
+            if (_repo.SaveChanges())
+            {
+                return Ok(teacher);
+            }
+            return BadRequest("Unregistered teacher");
         }
 
-        // api/teacher/
+        // api/teacher
         [HttpPut("{id}")]
         public IActionResult Put(int id, Teacher teacher)
         {
-            var tea = _context.Teachers.AsNoTracking().FirstOrDefault(t => t.Id == id);
+            var tea = _repo.GetTeacherById(id, false);
             if (tea == null)
             {
                 return BadRequest("Teacher not found");
             }
-            _context.Update(teacher);
-            _context.SaveChanges();
-            return Ok(teacher);
+
+            _repo.Update(teacher);
+            if (_repo.SaveChanges())
+            {
+                return Ok(teacher);
+            }
+            return BadRequest("Non-updated teacher");
         }
 
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, Teacher teacher)
         {
-            var tea = _context.Teachers.AsNoTracking().FirstOrDefault(t => t.Id == id);
+            var tea = _repo.GetTeacherById(id, false);
             if (tea == null)
             {
                 return BadRequest("Teacher not found");
             }
-            _context.Update(teacher);
-            _context.SaveChanges();
-            return Ok(teacher);
+            
+            _repo.Update(teacher);
+            if (_repo.SaveChanges())
+            {
+                return Ok(teacher);
+            }
+            return BadRequest("Non-updated teacher");
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var teacher = _context.Teachers.FirstOrDefault(t => t.Id == id);
+            var teacher = _repo.GetTeacherById(id, false);
             if (teacher == null)
             {
                 return BadRequest("Teacher not found");
             }
-            _context.Remove(teacher);
-            _context.SaveChanges();
-            return Ok();
+
+            _repo.Delete(teacher);
+            if (_repo.SaveChanges())
+            {
+                return Ok("Deleted teacher");
+            }
+            return BadRequest("Undeleted teacher");
         }
     }
 }
