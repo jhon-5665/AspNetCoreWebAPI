@@ -8,8 +8,8 @@ namespace SmartSchool.WebAPI.Models
             this.Id = id;
             this.Name = name;
         }
-        public int? Id { get; set; }
-        public string? Name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
         public IEnumerable<Discipline>? Disciplines { get; set; }
     }
 }

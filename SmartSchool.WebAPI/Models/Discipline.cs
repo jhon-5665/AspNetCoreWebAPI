@@ -9,9 +9,9 @@ namespace SmartSchool.WebAPI.Models
             this.Name = name;
             this.TeacherId = teacherId;            
         }
-        public int? Id { get; set; }
-        public string? Name { get; set; }
-        public int? TeacherId { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public int TeacherId { get; set; }
         public Teacher? Teacher { get; set; }
         public IEnumerable<StudentDiscipline>? StudentsDisciplines { get; set; }
     }

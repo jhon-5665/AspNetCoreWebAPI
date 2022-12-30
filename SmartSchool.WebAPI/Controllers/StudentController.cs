@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
@@ -7,85 +9,88 @@ namespace SmartSchool.WebAPI.Controllers
     [Route("api/[controller]")]
     public class StudentController : ControllerBase
     {
-        public List<Student> Students = new List<Student>() 
-        {
-            new Student()
-            {
-                Id = 1,
-                Name = "Marcos",
-                Surname = "Almeida",
-                Telephone = "12345658"
-            },            
-            new Student()
-            {
-                Id = 2,
-                Name = "Marta",
-                Surname = "Kent",
-                Telephone = "546464"
-            },
-            new Student()
-            {
-                Id = 3,
-                Name = "Laura",
-                Surname = "Maria",
-                Telephone = "564564564"
-            },
-        };
+        private readonly SmartContext _context;
 
-        public StudentController(){}
+        public StudentController(SmartContext context)
+        {
+            _context = context;
+        }            
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(Students);
+            return Ok(_context.Students);
         }
 
         // api/student/byId
         [HttpGet("ById/{id}")]
         public IActionResult GetById(int id)
-        {   
-            var student = Students.FirstOrDefault(s => s.Id == id);
+        {                       
+            var student = _context.Students.FirstOrDefault(s => s.Id == id);                       
             if (student == null)
             {
-                return BadRequest("The student was not found.");           
+                return BadRequest("The student was not found.");
             }
             return Ok(student);
         }
 
-        // api/student/nome
+        // api/student/name
         [HttpGet("ByName")]
         public IActionResult GetByName(string name, string surname)
-        {   
-            var student = Students.FirstOrDefault(s => s.Name.Contains(name) && s.Surname.Contains(surname));
+        {
+            var student = _context.Students.FirstOrDefault(s => s.Name.Contains(name) && s.Surname.Contains(surname));
             if (student == null)
             {
-                return BadRequest("The student was not found.");           
+                return BadRequest("The student was not found.");
             }
             return Ok(student);
         }
-        
+
         [HttpPost]
         public IActionResult Post(Student student)
-        {  
-           return Ok(student);
+        {
+            _context.Add(student);
+            _context.SaveChanges();
+            return Ok(student);
         }
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, Student student)
-        {  
-           return Ok(student);
+        {
+            var stud = _context.Students.AsNoTracking().FirstOrDefault(s => s.Id == id);
+            if (stud == null)
+            {
+                return BadRequest("Student not found");
+            }
+            _context.Update(student);
+            _context.SaveChanges();
+            return Ok(student);
         }
 
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, Student student)
-        {  
-           return Ok(student);
+        {
+            var stud = _context.Students.AsNoTracking().FirstOrDefault(s => s.Id == id);
+            if (stud == null)
+            {
+                return BadRequest("Student not found");
+            }
+            _context.Update(student);
+            _context.SaveChanges();
+            return Ok(student);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
-        {  
-           return Ok();
+        {
+            var student = _context.Students.FirstOrDefault(s => s.Id == id);
+            if (student == null)
+            {
+                return BadRequest("Student not found");
+            }
+            _context.Remove(student);
+            _context.SaveChanges();
+            return Ok();
         }
     }
 }
