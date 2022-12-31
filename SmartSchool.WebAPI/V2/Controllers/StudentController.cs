@@ -19,7 +19,6 @@ namespace SmartSchool.WebAPI.V2.Controllers
         public readonly IRepository _repo;
         private readonly IMapper _mapper;
 
-
         /// <summary>
         ///
         /// </summary>
@@ -41,17 +40,7 @@ namespace SmartSchool.WebAPI.V2.Controllers
             var students = _repo.GetAllStudents(true);          
             return Ok(_mapper.Map<IEnumerable<StudentDto>>(students));
         }
-
-        /// <summary>
-        /// Method responsible for returning only a single StudentDto
-        /// </summary>
-        /// <returns></returns>  
-        [HttpGet("getRegister")]
-        public IActionResult GetRegister()
-        {                   
-            return Ok(new StudentRegisterDto());
-        }
-
+        
         /// <summary>
         /// Method responsible for returning only a single Student through the Id
         /// </summary>
@@ -102,26 +91,7 @@ namespace SmartSchool.WebAPI.V2.Controllers
                 return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
             }
             return BadRequest("Non-updated student");
-        }
-
-        [HttpPatch("{id}")]
-        public IActionResult Patch(int id, StudentRegisterDto model)
-        {
-            var student = _repo.GetStudentById(id);
-            if (student == null)
-            {
-                return BadRequest("Student not found");
-            }
-
-            _mapper.Map(model, student);
-
-            _repo.Update(student);
-            if (_repo.SaveChanges())
-            {
-                return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
-            }
-            return BadRequest("Non-updated student");
-        }
+        }        
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

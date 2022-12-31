@@ -14,13 +14,7 @@ namespace SmartSchool.WebAPI.V2.Profiles
                 .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.BirthDate.GetCurrentAge()));
 
             CreateMap<StudentDto, Student>();
-            CreateMap<Student, StudentRegisterDto>().ReverseMap();
-
-            CreateMap<Teacher, TeacherDto>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.Name} {src.Surname}"));
-
-            CreateMap<TeacherDto, Teacher>();
-            CreateMap<Teacher, TeacherRegisterDto>().ReverseMap();            
+            CreateMap<Student, StudentRegisterDto>().ReverseMap();          
         }
     }
 }
