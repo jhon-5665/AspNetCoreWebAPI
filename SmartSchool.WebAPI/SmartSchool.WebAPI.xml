@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartSchool.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:SmartSchool.WebAPI.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:SmartSchool.WebAPI.V1.Controllers.StudentController">
+            <summary>
+            Version 1 of my students controller
+            </summary>
+        </member>
+        <member name="M:SmartSchool.WebAPI.V1.Controllers.StudentController.#ctor(SmartSchool.WebAPI.Data.IRepository,AutoMapper.IMapper)">
+             <summary>
+            
+             </summary>
+             <param name="repo"></param>        
+             <param name="mapper"></param> 
+        </member>
+        <member name="M:SmartSchool.WebAPI.V1.Controllers.StudentController.Get">
+            <summary>
+            Method responsible for returning all my students
+            </summary>
+            <returns></returns>  
+        </member>
+        <member name="M:SmartSchool.WebAPI.V1.Controllers.StudentController.GetRegister">
+            <summary>
+            Method responsible for returning only a single StudentDto
+            </summary>
+            <returns></returns>  
+        </member>
+        <member name="M:SmartSchool.WebAPI.V1.Controllers.StudentController.GetById(System.Int32)">
+            <summary>
+            Method responsible for returning only a single Student through the Id
+            </summary>
+            <param name="id"></param> 
+            <returns></returns> 
+        </member>
+        <member name="P:SmartSchool.WebAPI.V1.Dtos.StudentDto.Id">
+            <summary>
+            Bank identifier and key
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V1.Dtos.StudentDto.Registration">
+            <summary>
+            Student Key, for other business at the Institution
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V1.Dtos.StudentDto.Name">
+            <summary>
+            Name and First name or Last name of the Student
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V1.Dtos.StudentDto.Age">
+            <summary>
+            This age is the calculation related to the Student's date of birth
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V1.Dtos.StudentDto.Active">
+            <summary>
+            Activate or not the Student
+            </summary>   
+        </member>
+        <member name="T:SmartSchool.WebAPI.V1.Dtos.StudentRegisterDto">
+            <summary>
+            This is the Student DTO to Register.
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V1.Dtos.StudentRegisterDto.Id">
+            <summary>
+            Bank identifier and key
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V1.Dtos.StudentRegisterDto.Registration">
+            <summary>
+            Student Key, for other business at the Institution
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V1.Dtos.StudentRegisterDto.Name">
+            <summary>
+            Name and First name or Last name of the Student
+            </summary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.V2.Controllers.StudentController">
+            <summary>
+            Version 2 of my students controller
+            </summary>
+        </member>
+        <member name="M:SmartSchool.WebAPI.V2.Controllers.StudentController.#ctor(SmartSchool.WebAPI.Data.IRepository,AutoMapper.IMapper)">
+             <summary>
+            
+             </summary>
+             <param name="repo"></param>        
+             <param name="mapper"></param> 
+        </member>
+        <member name="M:SmartSchool.WebAPI.V2.Controllers.StudentController.Get">
+            <summary>
+            Method responsible for returning all my students
+            </summary>
+            <returns></returns>  
+        </member>
+        <member name="M:SmartSchool.WebAPI.V2.Controllers.StudentController.GetRegister">
+            <summary>
+            Method responsible for returning only a single StudentDto
+            </summary>
+            <returns></returns>  
+        </member>
+        <member name="M:SmartSchool.WebAPI.V2.Controllers.StudentController.GetById(System.Int32)">
+            <summary>
+            Method responsible for returning only a single Student through the Id
+            </summary>
+            <param name="id"></param> 
+            <returns></returns> 
+        </member>
+        <member name="P:SmartSchool.WebAPI.V2.Dtos.StudentDto.Id">
+            <summary>
+            Bank identifier and key
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V2.Dtos.StudentDto.Registration">
+            <summary>
+            Student Key, for other business at the Institution
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V2.Dtos.StudentDto.Name">
+            <summary>
+            Name and First name or Last name of the Student
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V2.Dtos.StudentDto.Age">
+            <summary>
+            This age is the calculation related to the Student's date of birth
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V2.Dtos.StudentDto.Active">
+            <summary>
+            Activate or not the Student
+            </summary>   
+        </member>
+        <member name="T:SmartSchool.WebAPI.V2.Dtos.StudentRegisterDto">
+            <summary>
+            This is the Student DTO to Register.
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V2.Dtos.StudentRegisterDto.Id">
+            <summary>
+            Bank identifier and key
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V2.Dtos.StudentRegisterDto.Registration">
+            <summary>
+            Student Key, for other business at the Institution
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V2.Dtos.StudentRegisterDto.Name">
+            <summary>
+            Name and First name or Last name of the Student
+            </summary>
+        </member>
+    </members>
+</doc>

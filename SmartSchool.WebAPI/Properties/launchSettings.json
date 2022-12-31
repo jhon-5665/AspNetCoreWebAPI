@@ -4,25 +4,20 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:30664",
-      "sslPort": 44301
+      "applicationUrl": "http://localhost:30664"
     }
   },
   "profiles": {
     "SmartSchool.WebAPI": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
+      "dotnetRunMessages": true,      
       "applicationUrl": "http://localhost:5059",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
+      "commandName": "IISExpress",      
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
