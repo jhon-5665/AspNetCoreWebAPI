@@ -3,10 +3,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>SmartSchool.WebAPI.xml</DocumentationFile>
-    <NoWarn>1591,8618,8620,8602,8603,8604</NoWarn>
+    <NoWarn>1591,8600,8618,8620,8602,8603,8604</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1"/>
@@ -18,11 +16,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.1"/>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.12" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0-silver.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.12"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0"/>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0"/>    
   </ItemGroup>
 </Project>

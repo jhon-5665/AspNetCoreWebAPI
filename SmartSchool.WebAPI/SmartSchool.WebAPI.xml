@@ -4,16 +4,16 @@
         <name>SmartSchool.WebAPI</name>
     </assembly>
     <members>
-        <member name="T:SmartSchool.WebAPI.Migrations.Initial">
+        <member name="T:SmartSchool.WebAPI.Migrations.initMySql">
             <inheritdoc />
         </member>
-        <member name="M:SmartSchool.WebAPI.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:SmartSchool.WebAPI.Migrations.initMySql.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:SmartSchool.WebAPI.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:SmartSchool.WebAPI.Migrations.initMySql.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:SmartSchool.WebAPI.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:SmartSchool.WebAPI.Migrations.initMySql.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:SmartSchool.WebAPI.V1.Controllers.StudentController">
