@@ -1,0 +1,24 @@
+<div>
+  <app-title [title]="title"></app-title>
+
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th> Visualize</th>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Discipline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teach of teachers">
+        <td>
+          <a [routerLink]="['/teacher/', teach.id]" class="text-dark btn btn-sm btn-outline-warning">Detail</a>
+        </td>
+        <th scope="row">{{teach.id}}</th>
+        <td>{{teach.name}}</td>
+        <td>{{disciplineConcat(teach.disciplines)}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

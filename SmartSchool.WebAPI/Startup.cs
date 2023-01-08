@@ -85,6 +85,7 @@ namespace SmartSchool.WebAPI
 
                 options.IncludeXmlComments(xmlCommentsFullPath);
             });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -98,6 +99,7 @@ namespace SmartSchool.WebAPI
             // app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseSwagger()
                .UseSwaggerUI(options =>

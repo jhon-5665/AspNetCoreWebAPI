@@ -35,7 +35,7 @@ namespace SmartSchool.WebAPI.V1.Controllers
             return Ok(new TeacherRegisterDto());
         }
 
-        // api/teachers
+        // api/teacher
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {                       
@@ -48,7 +48,20 @@ namespace SmartSchool.WebAPI.V1.Controllers
             var teacherDto = _mapper.Map<TeacherDto>(teacher);
 
             return Ok(teacher);
-        }        
+        }     
+
+        // api/teacher
+        [HttpGet("bystudent/{studentId}")]
+        public IActionResult GetByStudentId(int studentId)
+        {                       
+            var teachers = _repo.GetTeachersByStudentId(studentId, true);                       
+            if (teachers == null)
+            {
+                return BadRequest("Teachers not found.");
+            }            
+
+            return Ok(_mapper.Map<IEnumerable<TeacherDto>>(teachers));
+        }      
        
         // api/teacher/
         [HttpPost]

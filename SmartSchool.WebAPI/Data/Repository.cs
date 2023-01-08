@@ -78,7 +78,7 @@ namespace SmartSchool.WebAPI.Data
             return query.ToArray();
         }
 
-        public Student[] GetAllStudentsByDisciplineId(int disciplineId, bool includeTeacher = false)
+        public async Task<Student[]> GetAllStudentsByDisciplineIdAsync(int disciplineId, bool includeTeacher = false)
         {
             IQueryable<Student> query = _context.Students;
 
@@ -89,7 +89,7 @@ namespace SmartSchool.WebAPI.Data
 
             query = query.AsNoTracking().OrderBy(s => s.Id).Where(student => student.StudentsDisciplines.Any(sd => sd.DisciplineId == disciplineId));
             
-            return query.ToArray();
+            return await query.ToArrayAsync();
         }
 
         public Student GetStudentById(int studentId, bool includeTeacher = false)
@@ -136,11 +136,11 @@ namespace SmartSchool.WebAPI.Data
             return query.ToArray();
         }
 
-        public Teacher GetTeacherById(int teacherId, bool includeTeacher = false)
+        public Teacher GetTeacherById(int teacherId, bool includeStudent = false)
         {
             IQueryable<Teacher> query = _context.Teachers;
 
-            if (includeTeacher)
+            if (includeStudent)
             {
                 query = query.Include(t => t.Disciplines).ThenInclude(sd => sd.StudentsDisciplines).ThenInclude(s => s.Student);
             }
@@ -149,6 +149,21 @@ namespace SmartSchool.WebAPI.Data
 
             return query.FirstOrDefault();
         }
-        
+
+        public Teacher[] GetTeachersByStudentId(int studentId, bool includeStudents = false)
+        {
+            IQueryable<Teacher> query = _context.Teachers;
+
+            if (includeStudents)
+            {
+                query = query.Include(t => t.Disciplines).ThenInclude(sd => sd.StudentsDisciplines).ThenInclude(s => s.Student);
+            }
+
+            query = query.AsNoTracking().OrderBy(s => s.Id).Where(student => student.Disciplines.Any(sd => 
+                sd.StudentsDisciplines.Any(s => s.StudentId == studentId)));
+
+            return query.ToArray();
+        }
+       
     }
 }

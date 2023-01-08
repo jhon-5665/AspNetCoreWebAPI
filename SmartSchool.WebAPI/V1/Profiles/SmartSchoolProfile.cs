@@ -15,12 +15,16 @@ namespace SmartSchool.WebAPI.V1.Profiles
 
             CreateMap<StudentDto, Student>();
             CreateMap<Student, StudentRegisterDto>().ReverseMap();
+            CreateMap<Student, StudentPatchDto>().ReverseMap();
 
             CreateMap<Teacher, TeacherDto>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.Name} {src.Surname}"));
 
             CreateMap<TeacherDto, Teacher>();
-            CreateMap<Teacher, TeacherRegisterDto>().ReverseMap();            
+            CreateMap<Teacher, TeacherRegisterDto>().ReverseMap(); 
+
+            CreateMap<DisciplineDto, Discipline>().ReverseMap(); 
+            CreateMap<CourseDto, Course>().ReverseMap();           
         }
     }
 }

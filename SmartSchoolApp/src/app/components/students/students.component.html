@@ -1,0 +1,100 @@
+<div class="row">
+
+  <div class="col-sm-6" *ngIf="selectedStudent">
+    <div class="row">
+      <div class="mr-auto">
+        <app-title [title]="'Code Student: ' + selectedStudent.id"></app-title>
+      </div>
+      <div class="mt-1">
+        <button class="btn btn-sm btn-outline-danger" (click)="return()">
+          CLOSE
+        </button>
+      </div>
+    </div>
+
+    <form [formGroup]="studentForm">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Name</label>
+        <input type="text" formControlName="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Surname</label>
+        <input type="text" formControlName="surname" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Telephone</label>
+        <input type="text" formControlName="telephone" class="form-control">
+      </div>
+      <div class="form-group">
+        <hr>
+        <button class="btn btn-success" (click)="saveStudent()" [disabled]="!studentForm.valid">To Send</button>
+      </div>
+    </form>
+  </div>
+
+  <div [ngClass]="{'col-sm-6': selectedStudent, 'col-sm-12': !selectedStudent}">
+    <app-title [title]="title"></app-title>
+
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Visualize</th>
+          <th scope="col">#</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Telephone</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td><button (click)="studentSelect(student.id)" class="text-dark btn btn-sm btn-outline-warning">Detail</button>
+          </td>
+          <td scope="row">{{student.id}}</td>
+          <td>{{student.name}}</td>
+          <td>{{student.telephone}}</td>
+          <td>
+            <div class="btn-group">
+              <button (click)="openModal(template, student.id)" *ngIf="student.active"
+                class="btn btn-sm btn-outline-primary">Teachers</button>
+              <button class="btn btn-sm" [ngClass]="{'btn-outline-danger': student.active, 'btn-success': !student.active}"
+                (click)="changeState(student)">
+                {{ student.active ? 'Disable' : 'Activate' }}
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center">
+
+      <pagination
+        [boundaryLinks]="true"
+        [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage"
+        (pageChanged)="pageChanged($event)"
+
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;">
+
+      </pagination>
+
+    </div>
+
+  </div>
+
+</div>
+
+<ng-template #template>
+  <div class="modal-body">
+    <app-teachers-students (closeModal)="closeModal()" [teachers]="teachStudents"></app-teachers-students>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef.hide()">
+      CLOSE
+    </button>
+  </div>
+</ng-template>

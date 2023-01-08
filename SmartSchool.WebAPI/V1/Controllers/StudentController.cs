@@ -50,6 +50,17 @@ namespace SmartSchool.WebAPI.V1.Controllers
         /// Method responsible for returning only a single StudentDto
         /// </summary>
         /// <returns></returns>  
+        [HttpGet("ByDiscipline/{id}")]
+        public async Task<IActionResult> GetByDisciplineId(int id)
+        {                   
+            var result = await _repo.GetAllStudentsByDisciplineIdAsync(id, false);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Method responsible for returning only a single StudentDto
+        /// </summary>
+        /// <returns></returns>  
         [HttpGet("getRegister")]
         public IActionResult GetRegister()
         {                   
@@ -71,7 +82,7 @@ namespace SmartSchool.WebAPI.V1.Controllers
                 return BadRequest("The student was not found.");
             }
 
-            var studentDto = _mapper.Map<StudentDto>(student);
+            var studentDto = _mapper.Map<StudentRegisterDto>(student);
 
             return Ok(studentDto);
         }
@@ -109,7 +120,7 @@ namespace SmartSchool.WebAPI.V1.Controllers
         }
 
         [HttpPatch("{id}")]
-        public IActionResult Patch(int id, StudentRegisterDto model)
+        public IActionResult Patch(int id, StudentPatchDto model)
         {
             var student = _repo.GetStudentById(id);
             if (student == null)
@@ -122,7 +133,28 @@ namespace SmartSchool.WebAPI.V1.Controllers
             _repo.Update(student);
             if (_repo.SaveChanges())
             {
-                return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
+                return Created($"/api/student/{model.Id}", _mapper.Map<StudentPatchDto>(student));
+            }
+            return BadRequest("Non-updated student");
+        }
+
+        // api/student/{id}/changeState
+        [HttpPatch("{id}/changeState")]
+        public IActionResult ChangeState(int id, ChangeStateDto changeState)
+        {
+            var student = _repo.GetStudentById(id);
+            
+            if (student == null)
+            {
+                return BadRequest("Student not found");         
+            }
+            student.Active = changeState.State;
+
+            _repo.Update(student);
+            if (_repo.SaveChanges())
+            {
+               var msn = student.Active ? "activated" : "disabled";
+               return Ok(new {message = $"Successfully {msn} student!"});
             }
             return BadRequest("Non-updated student");
         }
